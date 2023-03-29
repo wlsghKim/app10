@@ -1,6 +1,7 @@
 package com.kh.app.web;
 
 import com.kh.app.domain.member.svc.MemberSVC;
+import com.kh.app.web.form.member.JoinForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,9 +26,8 @@ public class MemberController {
 
   //회원가입처리
   @PostMapping("/add")
-  public String join(){
-
+  public String join(JoinForm joinForm){
+    log.info("joinForm={}", joinForm);
     return  "member/joinSuccess.html";
   }
-
 }

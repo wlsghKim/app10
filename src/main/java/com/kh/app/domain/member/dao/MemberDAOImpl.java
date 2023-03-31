@@ -199,20 +199,10 @@ public class MemberDAOImpl implements MemberDAO{
     String sql = "select count(email) from member where email = :email ";
 
     Map<String, String> param = Map.of("email", email);
-<<<<<<< HEAD
 
     Integer cnt = template.queryForObject(sql, param, Integer.class);
 
     return cnt == 1 ? true : false;
-=======
-    try {
-      template.queryForObject(sql, param, Integer.class);
-      flag = true;
-    } catch (EmptyResultDataAccessException e) {
-      flag = false;
-    }
-    return flag;
->>>>>>> 320f499fe8426c809f00d8409f1ae643963ff862
   }
 
   /**
@@ -259,8 +249,4 @@ public class MemberDAOImpl implements MemberDAO{
     return (result.size() == 1) ? Optional.of(result.get(0)) : Optional.empty();
   }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 320f499fe8426c809f00d8409f1ae643963ff862

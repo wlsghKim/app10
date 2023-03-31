@@ -1,9 +1,5 @@
 package com.kh.app.domain.member.svc;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 320f499fe8426c809f00d8409f1ae643963ff862
 import com.kh.app.domain.entity.Member;
 
 import java.util.List;
@@ -40,8 +36,4 @@ public interface MemberSVC {
 
   //아이디찾기
   Optional<String> findEmailByNickname(String nickname);
-<<<<<<< HEAD
-=======
-
->>>>>>> 320f499fe8426c809f00d8409f1ae643963ff862
 }

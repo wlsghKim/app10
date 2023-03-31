@@ -37,8 +37,4 @@ public interface MemberDAO {
   //아이디찾기
   Optional<String> findEmailByNickname(String nickname);
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 320f499fe8426c809f00d8409f1ae643963ff862

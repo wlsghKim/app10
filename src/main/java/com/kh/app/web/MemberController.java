@@ -62,8 +62,6 @@ public class MemberController {
     return codes;
   }
 
-
-
   //회원가입양식
   @GetMapping("/add")
   public String joinForm(Model model){

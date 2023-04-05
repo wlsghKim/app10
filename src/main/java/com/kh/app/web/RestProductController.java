@@ -67,7 +67,7 @@ public class RestProductController {
   public RestResponse<Object> update(
       @PathVariable("id") Long productId,
       @RequestBody UpdateRest updateRest
-      ){
+  ){
     RestResponse<Object> res = null;
 
     //검증
@@ -143,7 +143,7 @@ public class RestProductController {
       res = RestResponse.createRestResponse("01", "삭제항목 미선택", null);
       return res;
     }
-    
+
     int deletedRows = productSVC.deleteParts(ids);
     if(deletedRows > 0) {
       res = RestResponse.createRestResponse("00", "성공", deletedRows);

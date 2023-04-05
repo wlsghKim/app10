@@ -1,6 +1,7 @@
 package com.kh.app.web;
 
 import com.kh.app.domain.common.svc.MultipartFileToUploadFile;
+import com.kh.app.domain.common.svc.UploadFileSVC;
 import com.kh.app.domain.entity.Product;
 import com.kh.app.domain.entity.UploadFile;
 import com.kh.app.domain.product.svc.ProductSVC;
@@ -28,6 +29,7 @@ public class ProductController {
 
   private final ProductSVC productSVC;
   private final MultipartFileToUploadFile multipartFileToUploadFile;
+  private final UploadFileSVC uploadFileSVC;
 
 //  public ProductController(ProductSVC productSVC) {
 //    this.productSVC = productSVC;
@@ -82,17 +84,18 @@ public class ProductController {
       return "product/saveForm";
     }
 
-    //등록
+    //상품
     Product product = new Product();
     product.setPname(saveForm.getPname());
     product.setQuantity(saveForm.getQuantity());
     product.setPrice(saveForm.getPrice());
 
-    //파일첨부
+    //파일첨부에 대한 메타정보추출 & 물리파일 저장
     UploadFile attachFile = multipartFileToUploadFile.convert(saveForm.getAttachFile(), AttachFileType.F010301);
     List<UploadFile> imageFiles = multipartFileToUploadFile.convert(saveForm.getImageFiles(), AttachFileType.F010302);
     imageFiles.add(attachFile);
 
+    //등록
     Long savedProductId = productSVC.save(product,imageFiles);
     redirectAttributes.addAttribute("id",savedProductId);
 
@@ -113,6 +116,12 @@ public class ProductController {
     detailForm.setPname(product.getPname());
     detailForm.setQuantity(product.getQuantity());
     detailForm.setPrice(product.getPrice());
+    //첨부파일 조회
+    List<UploadFile> attachedFile = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010301.name(), id);
+    List<UploadFile> imagedFiles = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010302.name(), id);
+
+    detailForm.setAttachedFile(attachedFile.get(0));
+    detailForm.setImagedFiles(imagedFiles);
 
     model.addAttribute("detailForm",detailForm);
     return "product/detailForm";
@@ -132,6 +141,13 @@ public class ProductController {
     updateForm.setPname(product.getPname());
     updateForm.setQuantity(product.getQuantity());
     updateForm.setPrice(product.getPrice());
+
+    //파일첨부조회
+    List<UploadFile> attachedFile = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010301.name(), id);
+    List<UploadFile> imagedFiles = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010302.name(), id);
+
+    updateForm.setAttachedFile(attachedFile.get(0));
+    updateForm.setImagedFiles(imagedFiles);
 
     model.addAttribute("updateForm",updateForm);
     return "product/updateForm";
@@ -158,7 +174,13 @@ public class ProductController {
     product.setQuantity(updateForm.getQuantity());
     product.setPrice(updateForm.getPrice());
 
-    productSVC.update(productId, product);
+    //파일첨부
+    UploadFile attachFile = multipartFileToUploadFile.convert(updateForm.getAttachFile(), AttachFileType.F010301);
+    List<UploadFile> imageFiles = multipartFileToUploadFile.convert(updateForm.getImageFiles(), AttachFileType.F010302);
+    if(attachFile != null) imageFiles.add(attachFile);
+
+    //수정
+    productSVC.update(productId, product, imageFiles);
 
     redirectAttributes.addAttribute("id",productId);
     return "redirect:/products/{id}/detail";

@@ -14,8 +14,4 @@ public class DetailForm {
 
   private UploadFile attachedFile;        // 일반 파일
   private List<UploadFile> imagedFiles;  // 이미지파일
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

@@ -1,11 +1,6 @@
 package com.kh.app.web;
 
-<<<<<<< HEAD
 import com.kh.app.domain.common.file.svc.UploadFileSVC;
-=======
-import com.kh.app.domain.common.svc.MultipartFileToUploadFile;
-import com.kh.app.domain.common.svc.UploadFileSVC;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 import com.kh.app.domain.entity.UploadFile;
 import com.kh.app.web.common.AttachFileType;
 import com.kh.app.web.exception.BizException;
@@ -30,10 +25,6 @@ import java.util.Optional;
 public class AttachFileController {
 
   private final UploadFileSVC uploadFileSVC;
-<<<<<<< HEAD
-=======
-  private final MultipartFileToUploadFile multipartFileToUploadFile;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 
   //첨부파일 다운로드
   @GetMapping("/down/{fid}")
@@ -43,7 +34,6 @@ public class AttachFileController {
 
     Optional<UploadFile> uploadFile = uploadFileSVC.findFileByUploadFileId(uploadfileId);
     if(uploadFile.isEmpty()) new BizException("첨부파일을 찾을 수 없습니다.");
-<<<<<<< HEAD
 
     //분류코드->enum변환
     AttachFileType attachFileType = AttachFileType.valueOf(uploadFile.get().getCode());
@@ -51,10 +41,6 @@ public class AttachFileController {
     String storeFilename = uploadFileSVC.getStoreFilename(attachFileType, uploadFile.get().getStore_filename());
     Resource resource = new UrlResource("file:"+storeFilename);
 
-=======
-    log.info("첨부파일 경로={}",getStoreFilePath(uploadFile.get()));
-    Resource resource = new UrlResource(getStoreFilePath(uploadFile.get()));
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
     //한글파일명 깨짐 방지를위한 인코딩
     String encodeUploadFileName = UriUtils.encode(uploadFile.get().getUpload_filename(), StandardCharsets.UTF_8);
     //Http응답 메세지 헤더에 첨부파일이 있음을 알림
@@ -73,7 +59,6 @@ public class AttachFileController {
 
     Optional<UploadFile> uploadFile = uploadFileSVC.findFileByUploadFileId(uploadfileId);
     if(uploadFile.isEmpty()) new BizException("첨부파일을 찾을 수 없습니다.");
-<<<<<<< HEAD
     //분류코드->enum변환
     AttachFileType attachFileType = AttachFileType.valueOf(uploadFile.get().getCode());
     //첨부파일
@@ -83,31 +68,11 @@ public class AttachFileController {
 //    String encodeUploadFileName = UriUtils.encode(uploadFile.get().getUpload_filename(), StandardCharsets.UTF_8);
 //    //Http응답 메세지 헤더에 첨부파일이 있음을 알림
 //    String contentDisposition = "attachment; filename="+ encodeUploadFileName;
-=======
-    log.info("이미지 경로={}",getStoreFilePath(uploadFile.get()));
-    Resource resource = new UrlResource(getStoreFilePath(uploadFile.get()));
-    //한글파일명 깨짐 방지를위한 인코딩
-    String encodeUploadFileName = UriUtils.encode(uploadFile.get().getUpload_filename(), StandardCharsets.UTF_8);
-    //Http응답 메세지 헤더에 첨부파일이 있음을 알림
-    String contentDisposition = "attachment; filename="+ encodeUploadFileName;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 
     return ResponseEntity.ok()  //응답코드 200
         .body(resource);
   }
 
-<<<<<<< HEAD
-=======
-  //파일시스템내에 물리적인 경로가져오기
-  private String getStoreFilePath(UploadFile metaInofOfuploadFile) {
-    StringBuffer storeFilePath = new StringBuffer();
-    storeFilePath.append("file:")
-        .append(multipartFileToUploadFile.getFullPath(AttachFileType.F010301.valueOf(metaInofOfuploadFile.getCode())))
-        .append(metaInofOfuploadFile.getStore_filename());
-    return storeFilePath.toString();
-  }
-
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
   //첨부파일 삭제-단건
   @ResponseBody
   @DeleteMapping("/{fid}")

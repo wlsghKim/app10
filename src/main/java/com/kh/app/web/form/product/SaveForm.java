@@ -25,8 +25,4 @@ public class SaveForm {
 
   private MultipartFile attachFile;        // 일반 파일
   private List<MultipartFile> imageFiles;  // 이미지파일
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

@@ -37,7 +37,6 @@ public interface MemberDAO {
   //아이디찾기
   Optional<String> findEmailByNickname(String nickname);
 
-<<<<<<< HEAD
   //비밀번호찾기
   boolean isExistByEmailAndNickname(String email, String nickname);
 
@@ -45,6 +44,3 @@ public interface MemberDAO {
   void changePasswd(String email, String passwd);
 
 }
-=======
-}
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

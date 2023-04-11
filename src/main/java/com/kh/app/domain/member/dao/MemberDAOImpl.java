@@ -249,7 +249,6 @@ public class MemberDAOImpl implements MemberDAO{
     return (result.size() == 1) ? Optional.of(result.get(0)) : Optional.empty();
   }
 
-<<<<<<< HEAD
   @Override
   public boolean isExistByEmailAndNickname(String email, String nickname) {
     boolean isExist = false;
@@ -279,6 +278,4 @@ public class MemberDAOImpl implements MemberDAO{
     Map<String, String> param = Map.of("email",email,"passwd",passwd);
     template.update(sql.toString(),param);
   }
-=======
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 }

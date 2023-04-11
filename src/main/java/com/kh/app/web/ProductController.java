@@ -1,11 +1,6 @@
 package com.kh.app.web;
 
-<<<<<<< HEAD
 import com.kh.app.domain.common.file.svc.UploadFileSVC;
-=======
-import com.kh.app.domain.common.svc.MultipartFileToUploadFile;
-import com.kh.app.domain.common.svc.UploadFileSVC;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 import com.kh.app.domain.entity.Product;
 import com.kh.app.domain.entity.UploadFile;
 import com.kh.app.domain.product.svc.ProductSVC;
@@ -32,10 +27,6 @@ import java.util.Optional;
 public class ProductController {
 
   private final ProductSVC productSVC;
-<<<<<<< HEAD
-=======
-  private final MultipartFileToUploadFile multipartFileToUploadFile;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
   private final UploadFileSVC uploadFileSVC;
 
 //  public ProductController(ProductSVC productSVC) {
@@ -98,15 +89,9 @@ public class ProductController {
     product.setPrice(saveForm.getPrice());
 
     //파일첨부에 대한 메타정보추출 & 물리파일 저장
-<<<<<<< HEAD
     UploadFile attachFile = uploadFileSVC.convert(saveForm.getAttachFile(), AttachFileType.F010301);
     List<UploadFile> imageFiles = uploadFileSVC.convert(saveForm.getImageFiles(), AttachFileType.F010302);
     if(attachFile != null) imageFiles.add(attachFile);
-=======
-    UploadFile attachFile = multipartFileToUploadFile.convert(saveForm.getAttachFile(), AttachFileType.F010301);
-    List<UploadFile> imageFiles = multipartFileToUploadFile.convert(saveForm.getImageFiles(), AttachFileType.F010302);
-    imageFiles.add(attachFile);
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 
     //등록
     Long savedProductId = productSVC.save(product,imageFiles);
@@ -123,19 +108,13 @@ public class ProductController {
   ){
     Optional<Product> findedProduct = productSVC.findById(id);
     Product product = findedProduct.orElseThrow();
-    
+
     //상품정보
     DetailForm detailForm = new DetailForm();
     detailForm.setProductId(product.getProductId());
     detailForm.setPname(product.getPname());
     detailForm.setQuantity(product.getQuantity());
     detailForm.setPrice(product.getPrice());
-    //첨부파일 조회
-    List<UploadFile> attachedFile = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010301.name(), id);
-    List<UploadFile> imagedFiles = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010302.name(), id);
-
-    detailForm.setAttachedFile(attachedFile.get(0));
-    detailForm.setImagedFiles(imagedFiles);
 
     //첨부파일조회
     List<UploadFile> attachedFile = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010301, id);
@@ -164,13 +143,8 @@ public class ProductController {
     updateForm.setPrice(product.getPrice());
 
     //파일첨부조회
-<<<<<<< HEAD
     List<UploadFile> attachedFile = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010301, id);
     List<UploadFile> imagedFiles = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010302, id);
-=======
-    List<UploadFile> attachedFile = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010301.name(), id);
-    List<UploadFile> imagedFiles = uploadFileSVC.findFilesByCodeWithRid(AttachFileType.F010302.name(), id);
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 
     updateForm.setAttachedFile(attachedFile.get(0));
     updateForm.setImagedFiles(imagedFiles);
@@ -199,20 +173,12 @@ public class ProductController {
     product.setPname(updateForm.getPname());
     product.setQuantity(updateForm.getQuantity());
     product.setPrice(updateForm.getPrice());
-    
+
     //파일첨부
     UploadFile attachFile = uploadFileSVC.convert(updateForm.getAttachFile(), AttachFileType.F010301);
     List<UploadFile> imageFiles = uploadFileSVC.convert(updateForm.getImageFiles(), AttachFileType.F010302);
     if(attachFile != null) imageFiles.add(attachFile);
 
-<<<<<<< HEAD
-=======
-    //파일첨부
-    UploadFile attachFile = multipartFileToUploadFile.convert(updateForm.getAttachFile(), AttachFileType.F010301);
-    List<UploadFile> imageFiles = multipartFileToUploadFile.convert(updateForm.getImageFiles(), AttachFileType.F010302);
-    if(attachFile != null) imageFiles.add(attachFile);
-
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
     //수정
     productSVC.update(productId, product, imageFiles);
 

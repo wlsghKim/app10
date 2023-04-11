@@ -100,9 +100,10 @@ public class MemberController {
   private String hobbyToString(List<String> hobby) {
     return StringUtils.join(hobby,",");
   }
-<<<<<<< HEAD
 
-  //GET /members/findPW
+
+
+  //  GET	/members/findPW
   @GetMapping("/findPW")
   public String findPWForm(){
 
@@ -112,13 +113,13 @@ public class MemberController {
   @PostMapping("findPW")
   public String findPW(@RequestParam String email, @RequestParam String nickname){
 
-    //1) email, nickname 인 회원 찾기
+    //1) email,nickname 인 회원 찾기
     boolean isExist = memberSVC.isExistByEmailAndNickname(email, nickname);
     if(!isExist){
 
       return "member/findPW";
     }
-    //2) 임시비밀번호 생성
+    //2) 임시비밀 번호 생성
     PasswordGenerator.PasswordGeneratorBuilder passwordGeneratorBuilder = new PasswordGenerator.PasswordGeneratorBuilder();
     String pwd = passwordGeneratorBuilder
         .useDigits(true)  //숫자포함여부
@@ -130,14 +131,12 @@ public class MemberController {
 
     //3) 회원의 비밀번호를 임시비밀번호로 변경
 
-    //4) 메일 발송
 
-    return "members/findPW";
+    //4) 메일 발송.
+
+    return "member/findPW";
   }
 
 
-  //POST /members/findPW
+
 }
-=======
-}
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

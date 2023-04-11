@@ -1,10 +1,6 @@
 package com.kh.app.domain.product.svc;
 
-<<<<<<< HEAD
 import com.kh.app.domain.common.file.svc.UploadFileSVC;
-=======
-import com.kh.app.domain.common.dao.UploadFileDAO;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 import com.kh.app.domain.entity.Product;
 import com.kh.app.domain.entity.UploadFile;
 import com.kh.app.domain.product.dao.ProductDAO;
@@ -25,11 +21,7 @@ import java.util.stream.Collectors;
 public class ProductSVCImpl implements ProductSVC{
 
   private final ProductDAO productDAO;
-<<<<<<< HEAD
   private final UploadFileSVC uploadFileSVC;
-=======
-  private final UploadFileDAO uploadFileDAO;
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
 
   @Override
   public Long save(Product product) {
@@ -41,11 +33,7 @@ public class ProductSVCImpl implements ProductSVC{
     Long productId = save(product);
     if (uploadFiles.size() > 0) {
       uploadFiles.stream().forEach(file->file.setRid(productId));
-<<<<<<< HEAD
       uploadFileSVC.addFiles(uploadFiles);
-=======
-      uploadFileDAO.addFiles(uploadFiles);
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
     }
 
     return productId;
@@ -66,11 +54,7 @@ public class ProductSVCImpl implements ProductSVC{
     productDAO.update(productId, product);
     if (uploadFiles.size() > 0) {
       uploadFiles.stream().forEach(file->file.setRid(productId));
-<<<<<<< HEAD
       uploadFileSVC.addFiles(uploadFiles);
-=======
-      uploadFileDAO.addFiles(uploadFiles);
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
     }
     return 0;
   }
@@ -81,7 +65,6 @@ public class ProductSVCImpl implements ProductSVC{
   }
 
   @Override
-<<<<<<< HEAD
   public int delete(Long productId, AttachFileType attachFileType) {
     //1) 상품정보 삭제
     int cnt = productDAO.delete(productId);
@@ -94,14 +77,9 @@ public class ProductSVCImpl implements ProductSVC{
 //    for (UploadFile uploadFile : uploadFiles) {
 //      multipartFileToUploadFile.deleteFile(attachFileType, uploadFile.getStore_filename());
 //    }
-    
+
     //3) 메타정보삭제
     uploadFileSVC.deleteFileByCodeWithRid(attachFileType,productId);
-=======
-  public int delete(Long productId, String code) {
-    int cnt = productDAO.delete(productId);
-    uploadFileDAO.deleteFileByCodeWithRid(code,productId);
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf
     return cnt;
   }
 
@@ -119,9 +97,5 @@ public class ProductSVCImpl implements ProductSVC{
   public boolean isExist(Long productId) {
     return productDAO.isExist(productId);
   }
-<<<<<<< HEAD
 
 }
-=======
-}
->>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

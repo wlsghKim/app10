@@ -100,6 +100,7 @@ public class MemberController {
   private String hobbyToString(List<String> hobby) {
     return StringUtils.join(hobby,",");
   }
+<<<<<<< HEAD
 
   //GET /members/findPW
   @GetMapping("/findPW")
@@ -137,3 +138,6 @@ public class MemberController {
 
   //POST /members/findPW
 }
+=======
+}
+>>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

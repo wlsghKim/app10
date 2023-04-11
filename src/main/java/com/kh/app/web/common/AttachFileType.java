@@ -14,4 +14,8 @@ public enum AttachFileType {
   public String getDescription() {
     return description;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

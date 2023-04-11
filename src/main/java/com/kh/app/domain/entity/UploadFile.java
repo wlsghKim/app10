@@ -15,4 +15,8 @@ public class UploadFile {
   private String ftype;           //  FTYPE	VARCHAR2(50 BYTE)
   private LocalDateTime cdate;    //  CDATE	TIMESTAMP(6)
   private LocalDateTime udate;    //  UDATE	TIMESTAMP(6)
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1c5bdcb09bc7c5290d072754755577a26743badf

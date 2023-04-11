@@ -39,7 +39,7 @@ public class LoginController {
       BindingResult bindingResult,
       HttpServletRequest httpServletRequest,
       @RequestParam(value="redirectUrl",required = false, defaultValue = "/") String redirectUrl
-      ){
+  ){
 
     log.info("redirectUrl={}",redirectUrl);
     if(bindingResult.hasErrors()){
@@ -64,10 +64,10 @@ public class LoginController {
     //세션이 있으면 해당 정보를 가져오고 없으면 세션생성
     HttpSession session = httpServletRequest.getSession(true);
     LoginMember loginMember = new LoginMember(
-          member.get().getMemberId(),
-          member.get().getEmail(),
-          member.get().getNickname(),
-          member.get().getGubun()  );
+        member.get().getMemberId(),
+        member.get().getEmail(),
+        member.get().getNickname(),
+        member.get().getGubun()  );
     session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
     return "redirect:"+redirectUrl;

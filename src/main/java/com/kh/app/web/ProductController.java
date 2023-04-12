@@ -51,7 +51,7 @@ public class ProductController {
       @Valid @ModelAttribute SaveForm saveForm,
       BindingResult bindingResult,  //검증 결과를 담는 객체
       RedirectAttributes redirectAttributes
-  ){
+      ){
 //    log.info("pname={}, quantity={}, price={}",pname,quantity,price);
     log.info("saveForm={}",saveForm);
 
@@ -108,7 +108,7 @@ public class ProductController {
   ){
     Optional<Product> findedProduct = productSVC.findById(id);
     Product product = findedProduct.orElseThrow();
-
+    
     //상품정보
     DetailForm detailForm = new DetailForm();
     detailForm.setProductId(product.getProductId());
@@ -173,7 +173,7 @@ public class ProductController {
     product.setPname(updateForm.getPname());
     product.setQuantity(updateForm.getQuantity());
     product.setPrice(updateForm.getPrice());
-
+    
     //파일첨부
     UploadFile attachFile = uploadFileSVC.convert(updateForm.getAttachFile(), AttachFileType.F010301);
     List<UploadFile> imageFiles = uploadFileSVC.convert(updateForm.getImageFiles(), AttachFileType.F010302);

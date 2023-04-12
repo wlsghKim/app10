@@ -77,7 +77,7 @@ public class ProductSVCImpl implements ProductSVC{
 //    for (UploadFile uploadFile : uploadFiles) {
 //      multipartFileToUploadFile.deleteFile(attachFileType, uploadFile.getStore_filename());
 //    }
-
+    
     //3) 메타정보삭제
     uploadFileSVC.deleteFileByCodeWithRid(attachFileType,productId);
     return cnt;

@@ -24,3 +24,4 @@ public class JoinForm {
   private List<String> hobby;
   private String region;
 }
+

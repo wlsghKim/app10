@@ -17,10 +17,10 @@ class MemberSVCImplTest {
   @Test
   @DisplayName("회원아이디 존재유무확인")
   void isExist() {
-    boolean exist = memberSVC.isExist("test1@kh.com");
+    boolean exist = memberSVC.isExist("test@kh.com");
     Assertions.assertThat(exist).isTrue();
 
-    exist = memberSVC.isExist("test1@kh.com111");
+    exist = memberSVC.isExist("test@kh.com111");
     Assertions.assertThat(exist).isFalse();
   }
 }

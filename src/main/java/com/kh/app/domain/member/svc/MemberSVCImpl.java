@@ -102,7 +102,6 @@ public class MemberSVCImpl implements MemberSVC{
     return Optional.empty();
   }
 
-
   @Override
   public boolean isExistByEmailAndNickname(String email, String nickname) {
     return memberDAO.isExistByEmailAndNickname(email, nickname);

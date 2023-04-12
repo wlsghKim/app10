@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @Slf4j
 @SpringBootTest
 class MailServiceTest {
@@ -13,11 +15,11 @@ class MailServiceTest {
   private MailService mailService;
 
   @Test
-  void sendSimpleMail(){
+  void sendSimpleMail() {
     StringBuffer str = new StringBuffer();
     str.append("<html>");
     str.append("<a href='http://localhost/login'>로그인</a>");
     str.append("</html>");
-    mailService.sendMail("kjh2022@gmail.com", "제목", str.toString());
+    mailService.sendMail("sang105kr@gmail.com","제목",str.toString());
   }
 }
